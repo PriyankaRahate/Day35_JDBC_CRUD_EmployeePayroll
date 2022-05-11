@@ -15,7 +15,7 @@ import com.JDBC.Bridgelabz.Day35_CRUD_EmployeePayroll.EmployeePayrollService;
 
 public class EmployeePayrollServiceTest {
 
-
+    
     @Test
     public void given3Employees_WhenWrittenToFile_ShouldMatchEmployeeEntries() {
         EmployeePayrollData[] arrayOfEmp = { new EmployeePayrollData(1, "Bill", 100000.0),
@@ -39,7 +39,7 @@ public class EmployeePayrollServiceTest {
         Assert.assertEquals(3, employeePayrollData.size());
     }
 
-  
+    
 
     @Test
     public void givenNewSalaryForEmployeeWhenupdatedShouldSyncWith_DB() throws EmployeePayrollException {
@@ -52,6 +52,7 @@ public class EmployeePayrollServiceTest {
         System.out.println(employeePayrollData);
     }
 
+    //uc4
     @Test
     public void givenNewSalaryForEmployeeWhenUpdatedShouldSyncWith_DB() throws EmployeePayrollException {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -62,7 +63,7 @@ public class EmployeePayrollServiceTest {
         Assert.assertFalse(result);
         System.out.println(employeePayrollData);
     }
-   
+    //uc5
     @Test
     public void givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount() {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -74,7 +75,7 @@ public class EmployeePayrollServiceTest {
         Assert.assertEquals(3, employeePayrollData.size());
     }
 
-    
+    //uc6
     @Test
     public void givenEmployeePayrollData_ShouldMatch_AverageSalary_GroupByGender() {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -137,6 +138,18 @@ public class EmployeePayrollServiceTest {
         boolean result = employeePayrollService.checkEmployeePayrollInSyncWithDB("Ashwini");
         Assert.assertTrue(result);
         System.out.println(employeePayrollData);
+    }
+
+   
+    @Test
+    public void givenNewSalaryForEmployeeWhenupdatedShouldSyncWith_RefactorNewNormalisedDB() throws EmployeePayrollException {
+        EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+        List<EmployeePayrollData> employeePayrollData = employeePayrollService
+                .readEmployeepayrollData(EmployeePayrollService.IOService.DB_IO);
+        employeePayrollService.updateEmployeeSalary("Hima", 200000.0);
+        System.out.println(employeePayrollData);
+        boolean result = employeePayrollService.checkEmployeePayrollInSyncWithDB("Hima");
+        Assert.assertTrue(result);
     }
 
 }

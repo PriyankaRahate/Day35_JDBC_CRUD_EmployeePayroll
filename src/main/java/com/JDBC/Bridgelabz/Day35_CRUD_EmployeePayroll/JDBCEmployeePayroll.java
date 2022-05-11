@@ -18,7 +18,7 @@ public class JDBCEmployeePayroll {
         try {
            
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_payroll_service?useSSL=false", "root",
-                    "Mujawar#1118");
+                    "Priyanka1118");
             System.out.println("Connection Done..!!!" + con);
         } catch (Exception e) {
             e.printStackTrace();
