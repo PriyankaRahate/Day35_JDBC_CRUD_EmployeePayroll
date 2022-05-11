@@ -1,8 +1,5 @@
 package com.JDBC.Bridgelabz.Day35_CRUD_EmployeePayroll;
 
-/**
- * import all classes
- */
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,7 +15,7 @@ public class EmployeePayrollFileIOService {
    
     public void writeData(List<EmployeePayrollData> employeePayrollList) {
        
-        final StringBuffer empBuffer = new StringBuffer();
+        StringBuffer empBuffer = new StringBuffer();
         employeePayrollList.forEach(employee -> {
             String employeeDataString = employee.toString().concat("\n");
             empBuffer.append(employeeDataString);
@@ -30,6 +27,7 @@ public class EmployeePayrollFileIOService {
         }
     }
 
+    
     public void printData() {
         try {
             Files.lines(new File(PAYROLL_FILE_NAME).toPath()).forEach(System.out::println);
@@ -38,7 +36,6 @@ public class EmployeePayrollFileIOService {
         }
     }
 
-    
     public long countEntries() {
         long entries = 0;
         try {
@@ -49,7 +46,7 @@ public class EmployeePayrollFileIOService {
         return entries;
     }
 
-   
+    
     public List<EmployeePayrollData> readData() {
        
         List<EmployeePayrollData> employeePayrollList = new ArrayList<EmployeePayrollData>();
@@ -70,6 +67,7 @@ public class EmployeePayrollFileIOService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+       
         return employeePayrollList;
     }
 }

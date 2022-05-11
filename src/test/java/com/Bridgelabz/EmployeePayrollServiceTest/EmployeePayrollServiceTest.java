@@ -15,7 +15,7 @@ import com.JDBC.Bridgelabz.Day35_CRUD_EmployeePayroll.EmployeePayrollService;
 
 public class EmployeePayrollServiceTest {
 
-    //uc2
+    
     @Test
     public void given3Employees_WhenWrittenToFile_ShouldMatchEmployeeEntries() {
         EmployeePayrollData[] arrayOfEmp = { new EmployeePayrollData(1, "Bill", 100000.0),
@@ -39,7 +39,7 @@ public class EmployeePayrollServiceTest {
         Assert.assertEquals(3, employeePayrollData.size());
     }
 
-    //uc3
+   
 
     @Test
     public void givenNewSalaryForEmployeeWhenupdatedShouldSyncWith_DB() throws EmployeePayrollException {
@@ -52,7 +52,7 @@ public class EmployeePayrollServiceTest {
         System.out.println(employeePayrollData);
     }
 
-    //uc4
+   
     @Test
     public void givenNewSalaryForEmployeeWhenUpdatedShouldSyncWith_DB() throws EmployeePayrollException {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -63,7 +63,7 @@ public class EmployeePayrollServiceTest {
         Assert.assertFalse(result);
         System.out.println(employeePayrollData);
     }
-    //uc5
+   
     @Test
     public void givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount() {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -75,7 +75,7 @@ public class EmployeePayrollServiceTest {
         Assert.assertEquals(3, employeePayrollData.size());
     }
 
-    //uc6
+    
     @Test
     public void givenEmployeePayrollData_ShouldMatch_AverageSalary_GroupByGender() {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -116,7 +116,7 @@ public class EmployeePayrollServiceTest {
                 employeeCountByGender.get("M").equals(3.0) && employeeCountByGender.get("F").equals(1.0));
     }
 
-  
+   
     @Test
     public void givenNewEmployee_WhenAddedShouldSyncWithDB() throws EmployeePayrollException {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -140,7 +140,7 @@ public class EmployeePayrollServiceTest {
         System.out.println(employeePayrollData);
     }
 
-   
+    
     @Test
     public void givenNewSalaryForEmployeeWhenupdatedShouldSyncWith_RefactorNewNormalisedDB() throws EmployeePayrollException {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -152,7 +152,7 @@ public class EmployeePayrollServiceTest {
         Assert.assertTrue(result);
     }
 
-   
+  
     @Test
     public void givenNewEmployeesWhenAddedInNormalised_ShouldSyncWithDB() {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService();
@@ -161,6 +161,15 @@ public class EmployeePayrollServiceTest {
         boolean result = employeePayrollService.checkEmployeePayrollInSyncWithDB("Revanth");
         Assert.assertTrue(result);
     }
-   
-        }
 
+    
+    @Test
+    public void givenEmployeePayrollData_ShouldReturn_ActiveEmployees() {
+        EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+        employeePayrollService.readEmployeepayrollData(EmployeePayrollService.IOService.DB_IO);
+        List<EmployeePayrollData> employeePayrollData = employeePayrollService
+                .readPayrollDataForActiveEmployees(EmployeePayrollService.IOService.DB_IO);
+        System.out.println(employeePayrollData);
+        Assert.assertEquals(5, employeePayrollData.size());
+    }
+}
